@@ -1,0 +1,21 @@
+version: '3.3'
+
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=db_elbalcon
+      - POSTGRES_USER=elbalcon
+      - POSTGRES_PASSWORD=limonagrio123
+    ports:
+      - 5430:5432
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=stiv.marin@utp.edu.co
+      - PGADMIN_DEFAULT_PASSWORD=limonagrio123
+    ports:
+      - 5050:80
