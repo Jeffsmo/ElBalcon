@@ -9,6 +9,7 @@ export default defineConfig({
   plugins: [
     react(),
     tsconfigPaths(),
+    
     electron({
       main: {
         // Shortcut of `build.lib.entry`.

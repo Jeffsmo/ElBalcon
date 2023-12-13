@@ -1,0 +1,7 @@
+.Home{
+    color: var(--secondary-color);
+    font-family: 'Dancing Script', cursive;
+    background-color: var(--main-white);
+    font-weight: bold;
+    font-size: x-large;
+}
