@@ -29,17 +29,29 @@ function boomErrorHandler(err, req, res, next){
 }
 
 
-function ormErrorHandler(err,req,res,next){
+async function ormErrorHandler(err,req,res,next){
+  await err;
   if(err instanceof ValidationError){
-    res.status(409).json({
+    await res.status(409).json({
       statusCode: 409,
       message: err.message,
       errors: err.errors
     });
   }
-  next(err);
+  await next(err);
 
 }
 
+function queryErrorHandler(err, req, res, next) {
+  if (err.parent) {
+    const { fields, parent } = err;
+    res.status(409).json({
+      field: fields,
+      message: parent.detail,
+    });
+  }
+  next(err);
+}
 
-module.exports = {logErrors, errorHandler,ormErrorHandler, boomErrorHandler};
+
+module.exports = {logErrors,queryErrorHandler, errorHandler,ormErrorHandler, boomErrorHandler};

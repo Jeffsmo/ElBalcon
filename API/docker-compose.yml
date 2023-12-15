@@ -24,7 +24,7 @@ services:
     image: mysql:5
     environment:
       - MYSQL_DATABASE=db_elbalcon
-      - MYSQL_USER=elbalcon
+      - MYSQL_USER=root
       - MYSQL_ROOT_PASSWORD=limonagrio123
       - MYSQL_ROOT_PORT=3306
     ports:
