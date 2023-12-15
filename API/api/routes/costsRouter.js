@@ -1,11 +1,11 @@
 const express=require('express');
-const UserService=require('../services/userService');
+const CostsService=require('../services/costsServices');
 const validatorHandler=require('../httpErrors/validatorHandler');
-const{updateUserSchema,createUserSchema,getUserSchema}=require('../DTO/userSchema');
+const{updateCostsSchema,createCostsSchema, getCostsSchema}=require('../DTO/costsSchema');
 
 
 const router=express.Router();
-const service=new UserService();
+const service=new CostsService();
 
 
 
@@ -17,7 +17,7 @@ router.get('/',async(req,res,next)=>{
 
 
 router.get('/:id',
-    validatorHandler(getUserSchema,'params'),
+    validatorHandler(getCostsSchema,'params'),
     async(req,res,next)=>{
       try{
         const{id}=req.params;
@@ -27,7 +27,7 @@ router.get('/:id',
 
 
 router.post('/',
-        validatorHandler(createUserSchema,'body'),
+        validatorHandler(createCostsSchema,'body'),
         async(req,res,next)=>{
           try
           {
@@ -40,8 +40,8 @@ router.post('/',
             next(error);
           }});
 router.patch('/:id',
-        validatorHandler(getUserSchema,'params'),
-        validatorHandler(updateUserSchema,'body'),
+        validatorHandler(getCostsSchema,'params'),
+        validatorHandler(updateCostsSchema,'body'),
         async(req,res,next)=>{
 
           try
@@ -58,7 +58,7 @@ router.patch('/:id',
             }
           });
 
-  router.delete('/:id', validatorHandler(getUserSchema,'params'),
+  router.delete('/:id', validatorHandler(getCostsSchema,'params'),
 
   async(req,res,next)=>{
       try{

@@ -1,7 +1,7 @@
 const express = require('express');
 const routerApi = require('./routes/routerAPI');
 const cors = require('cors');
-const {logErrors, errorHandler, boomErrorHandler} = require('./httpErrors/errorHandler');
+const {logErrors, errorHandler, boomErrorHandler, ormErrorHandler} = require('./httpErrors/errorHandler');
 
 
 const app = express();
@@ -35,6 +35,7 @@ routerApi(app);
 app.use(logErrors); //Los middlewares se utilizan en el metodo .use()...
 app.use(boomErrorHandler);
 app.use(errorHandler);
+app.use(ormErrorHandler);
 
 // app.get('/users', (req, res) => {
 //   const { limit, offset } = req.query;

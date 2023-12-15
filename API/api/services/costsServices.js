@@ -3,37 +3,37 @@ const boom=require('@hapi/boom');
 
 const {models}= require('../../libs/sequelize')
 
-class UserService
+class CostsService
 {
     constructor(){}
     async create(data)
     {
-      const newUser = await models.User.create(data);
-      return newUser;
+      const newCost = await models.Costs.create(data);
+      return newCost;
     }
     async find(){
-      const rta= await models.User.findAll();
+      const rta= await models.Costs.findAll();
       return rta;
   }
     async findOne(id)
     {
-      const user = await models.User.findByPk(id);
-      if(!user){
+      const cost = await models.Costs.findByPk(id);
+      if(!cost){
         throw boom.notFound('user not found')
       }
-      return user;
+      return cost;
     }
     async update(id,changes)
     {
-      const user = await this.findOne(id);
-      const rta = await user.update(changes);
+      const cost = await this.findOne(id);
+      const rta = await cost.update(changes);
       return rta;
     }
     async delete(id)
     {
-      const user = this.findOne(id);
-      await user.destroy();
+      const cost = await this.findOne(id);
+      await cost.destroy();
       return {id};
     }
   }
-module.exports=UserService;
+module.exports=CostsService;

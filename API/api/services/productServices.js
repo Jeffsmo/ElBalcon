@@ -1,6 +1,7 @@
 const {faker} = require('@faker-js/faker');
 const boom = require('@hapi/boom');
-const pool = require('../../libs/postgressPool');
+//const pool = require('../../libs/postgressPool');
+const sequelize = require('../../libs/sequelize');
 
 
 class ProductServices{
@@ -9,8 +10,9 @@ class ProductServices{
     this.products = [];
     this.generate(); /// CADA QUE CREEMOS UNA INSTANCIA NUEVA NOS VA A GENERAR LOS PRODUCTOS
     //por esos ponemos este atributo al constructor...
-    this.pool = pool;
-    this.pool.on('error', (err)=> console.error(err));
+    // this.pool = pool;
+    // this.pool.on('error', (err)=> console.error(err));  NO ES NECESARIO HACER LA CONSULTA POR POOL PORQUE
+    //SEQUELIZE SE ENCARGA DE HACER LA CONSULTA CON POOL
   }
 
   async generate(){
@@ -39,8 +41,11 @@ class ProductServices{
 
   async find(){
     const query = 'SELECT * FROM  task';
-    const rta = await this.pool.query(query);
-    return rta.rows;
+    const [data, metdata] = await sequelize.query(query);
+    return {
+      data,
+      metdata,
+    };
   }
 
   async findOne(id)

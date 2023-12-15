@@ -1,5 +1,5 @@
 //Los Middlewares de tipo error se deben hacer después de hacer el routing...
-
+const {ValidationError} = require('sequelize');
 
 
 
@@ -13,6 +13,7 @@ function errorHandler(err, req, res, next){
     message: err.message,
     stack: err.stack,
   });
+  next(err);
 }
 
 function boomErrorHandler(err, req, res, next){
@@ -28,5 +29,17 @@ function boomErrorHandler(err, req, res, next){
 }
 
 
+function ormErrorHandler(err,req,res,next){
+  if(err instanceof ValidationError){
+    res.status(409).json({
+      statusCode: 409,
+      message: err.message,
+      errors: err.errors
+    });
+  }
+  next(err);
 
-module.exports = {logErrors, errorHandler, boomErrorHandler};
+}
+
+
+module.exports = {logErrors, errorHandler,ormErrorHandler, boomErrorHandler};
