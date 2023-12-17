@@ -5,6 +5,7 @@ const { User, UserSchema} = require('./userModel');
 const {Costs, CostsSchema} = require('./costsModel');
 const {Sales, SalesSchema} = require('./salesModel');
 const {Menu, MenuSchema} = require('./menuModel');
+const {Category, CategorySchema} = require('./categoryModel');
 
 
 
@@ -13,11 +14,12 @@ function setupModels(sequelize){
     Costs.init(CostsSchema, Costs.config(sequelize));
     Sales.init(SalesSchema, Sales.config(sequelize));
     Menu.init(MenuSchema, Menu.config(sequelize));
+    Category.init(CategorySchema, Category.config(sequelize));
 
 
     Sales.associate(sequelize.models);
-
-
+    Category.associate(sequelize.models);
+    Menu.associate(sequelize.models);
 }
 
 module.exports = {setupModels};

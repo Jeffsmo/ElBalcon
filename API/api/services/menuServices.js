@@ -12,7 +12,9 @@ class MenuService
       return newItem;
     }
     async find(){
-      const rta= await models.Menu.findAll();
+      const rta= await models.Menu.findAll({
+        include:['category']
+      });
       return rta;
   }
     async findOne(id)
