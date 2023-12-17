@@ -15,7 +15,7 @@ const CostsSchema = {
   },
   value:{
       allowNull:false,
-      type: DataTypes.FLOAT,
+      type: DataTypes.INTEGER,
   },
   Date:{
       allowNull: false,

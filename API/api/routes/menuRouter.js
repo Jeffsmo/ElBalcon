@@ -1,24 +1,23 @@
 const express=require('express');
-const UserService=require('../services/userService');
+const MenuService=require('../services/menuServices');
 const validatorHandler=require('../httpErrors/validatorHandler');
-const{updateUserSchema,createUserSchema,getUserSchema}=require('../DTO/userSchema');
+const{updateMenuSchema, createMenuSchema,  getMenuSchema}=require('../DTO/menuSchema');
 
 
 const router=express.Router();
-const service=new UserService();
+const service=new MenuService();
 
 
 
 router.get('/',async(req,res,next)=>{
   try{
       const users=await service.find();
-      res.json(users);}
-  catch(error){next(error);
-}});
+      res.json(users);}catch(error){next(error);
+      }});
 
 
 router.get('/:id',
-    validatorHandler(getUserSchema,'params'),
+    validatorHandler(getMenuSchema,'params'),
     async(req,res,next)=>{
       try{
         const{id}=req.params;
@@ -28,7 +27,7 @@ router.get('/:id',
 
 
 router.post('/',
-        validatorHandler(createUserSchema,'body'),
+        validatorHandler(createMenuSchema,'body'),
         async(req,res,next)=>{
           try
           {
@@ -41,8 +40,8 @@ router.post('/',
             next(error);
           }});
 router.patch('/:id',
-        validatorHandler(getUserSchema,'params'),
-        validatorHandler(updateUserSchema,'body'),
+        validatorHandler(getMenuSchema,'params'),
+        validatorHandler(updateMenuSchema,'body'),
         async(req,res,next)=>{
 
           try
@@ -59,7 +58,7 @@ router.patch('/:id',
             }
           });
 
-  router.delete('/:id', validatorHandler(getUserSchema,'params'),
+  router.delete('/:id', validatorHandler(getMenuSchema,'params'),
 
   async(req,res,next)=>{
       try{
