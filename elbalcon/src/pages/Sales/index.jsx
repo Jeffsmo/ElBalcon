@@ -1,13 +1,14 @@
-import './Costs.css';
+import './Sales.css';
 import Layout from '../../components/Layout/index';
-function Costs() {
+
+function Sales() {
     return (
         <Layout>
-            <h1>Costs</h1>
+            <h1>Sales</h1>
         </Layout>
 
     )
   }
   
-  export default Costs
+  export default Sales
   

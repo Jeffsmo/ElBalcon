@@ -3,17 +3,40 @@
   font-family: 'Dancing Script', cursive;
   font-family: 'Chonburi', serif;
   background-color:var(--soft-clear-brown);
-  --secondary-color: #624a33;
+  --secondary-color: #463724;
   --form-color:#78472f;
   --main-white:#f5f6f7;
   --vintage-orange:#975e38;
-  --soft-clear-brown:#b7a393;
+  --soft-clear-brown:#b3a171;
+  --light-blue:#347cc5;
+  --background-black:#090808;
+  --dark-blue:#1f334d;
+  padding: 0px;
+  margin: 0px;
+
+}
+html{
+  margin:0;
+  padding:0;
+}
+
+div#root{
+  padding: 0;
+  margin: 0;
+}
+
+body{
+  margin:0;
+
+
 }
 /* Quitar el subrayado de los enlaces dentro de las listas */
 ul li a,
 ol li a {
     text-decoration: none;
     color: var(--secondary-color);
+    padding: 0;
+    margin: 0;
 }
 
 /* Quitar los puntos de las listas */

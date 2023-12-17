@@ -1,7 +1,9 @@
 .Home{
-    color: var(--secondary-color);
+   /* color: var(--secondary-color);
     font-family: 'Dancing Script', cursive;
     background-color: var(--main-white);
     font-weight: bold;
-    font-size: x-large;
+    font-size: x-large;*/
+    color: black;
+    z-index: 10;
 }

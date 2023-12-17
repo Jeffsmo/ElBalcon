@@ -1,10 +1,10 @@
 import './Balance.css'
-
+import Layout from '../../components/Layout/index';
 function Balance() {
     return (
-        <div className='Balance'>
+        <Layout>
             <h1>Balance</h1>
-        </div>
+        </Layout>
 
     )
   }

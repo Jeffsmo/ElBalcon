@@ -6,7 +6,7 @@ function Navbar(){
     return(
         <nav>
 
-            <ul>
+            <ul className='font-semibold'>
                 <li>
                     <NavLink to='/'>
                         El Balcón
@@ -18,8 +18,12 @@ function Navbar(){
                 <li>
                         Jeferson Marin
                 </li>
+                <li>
+                    <NavLink to='/menu' className= 'font-semibold Menu'>
+                        Menú
+                    </NavLink>
+                </li>
             </ul>
-
 
         </nav>
     )

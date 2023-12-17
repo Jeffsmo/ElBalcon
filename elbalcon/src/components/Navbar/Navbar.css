@@ -1,7 +1,33 @@
 nav {
     display: flex;
-    flex-direction: row;
     justify-content:space-between;
-    font-family: 'Chonburi', serif;
+    font-family: 'Dancing Script', cursive;
     align-items: center;
+    position: absolute ;
+    font-size: 14px;
+    width: 98%;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    background-color: var(--main-white);
+    margin: 0;
+    top:0;
+}
+
+ul{
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.font-semibold{
+    font-family:'Bungee', sans-serif ;
+    font-size: larger;
+}
+
+.Menu{
+    font-family: 'Dancing Script', cursive;
+    font-size: large;
+    font-weight: bolder;
 }

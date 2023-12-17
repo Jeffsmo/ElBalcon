@@ -1,11 +1,11 @@
-import './Home.css'
+import './Home.css';
+import Layout from '../../components/Layout/index';
 
 function Home() {
     return (
-        <div className='Home'>
-            <h1>Home</h1>
-        </div>
-
+        <Layout>
+            <h1>Sistema de Facturación</h1>
+        </Layout>
     )
   }
   

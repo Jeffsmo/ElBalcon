@@ -1,10 +1,10 @@
 import './Profits.css'
-
+import Layout from '../../components/Layout/index';
 function Profits() {
     return (
-        <div className='Profits'>
+        <Layout>
             <h1>Profits</h1>
-        </div>
+        </Layout>
 
     )
   }
