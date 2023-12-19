@@ -13,13 +13,15 @@ class MenuService
     }
     async find(){
       const rta= await models.Menu.findAll({
-        include:['category']
+        include:['category', 'images']
       });
       return rta;
   }
     async findOne(id)
     {
-      const menu = await models.Menu.findByPk(id);
+      const menu = await models.Menu.findByPk(id,{
+        include:['images']
+      });
       if(!menu){
         throw boom.notFound('item not found')
       }

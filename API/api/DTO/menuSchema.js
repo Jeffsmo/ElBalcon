@@ -5,6 +5,7 @@ const name = Joi.string().min(4);
 const price = Joi.number().integer().min(10);
 const image = Joi.string().uri();
 const categoryId = Joi.number().integer();
+const imagesId = Joi.number().integer();
 
 
 const createMenuSchema = Joi.object({
@@ -12,6 +13,7 @@ const createMenuSchema = Joi.object({
   price: price.required(),
   image: image,
   categoryId: categoryId,
+  imagesId:imagesId,
 })
 
 const updateMenuSchema = Joi.object({
@@ -20,6 +22,7 @@ const updateMenuSchema = Joi.object({
   price: price,
   image: image,
   categoryId:categoryId,
+  imagesId:imagesId,
 })
 
 const getMenuSchema = Joi.object({
