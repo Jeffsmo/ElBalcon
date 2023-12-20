@@ -17,6 +17,11 @@ const ImageSchema = {
   typeImage: {
     allowNull: true,
     type: DataTypes.STRING,
+  },
+  fileName:{
+    field: 'file_name',
+    allowNull: false,
+    type: DataTypes.STRING
   }
 };
 

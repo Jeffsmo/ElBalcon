@@ -2,6 +2,7 @@ const express = require('express');
 const routerApi = require('./routes/routerAPI');
 const cors = require('cors');
 const {logErrors,queryErrorHandler, errorHandler, boomErrorHandler, ormErrorHandler} = require('./httpErrors/errorHandler');
+const path = require('path');
 
 
 const app = express();
@@ -10,7 +11,7 @@ const port = process.env.PORT || 3000;
 app.use(express.json()); //Estos tambien son Middlewares...
 //app.use(cors()); ----->>> ESTO DA ACCESO A TODOS LOS ORIGENES, CUIDADO!!...
 
-const whitelist= ['http://localhost:8080'];
+const whitelist= ['http://localhost:8080', 'http://localhost:5173', 'http://localhost:5050 '];
 const options = {
   origin: (origin, callback) => {
     if(whitelist.includes(origin) || !origin){callback(null, true)}
@@ -26,6 +27,7 @@ app.get('/api', (req, res) => {
 app.get('/api/nueva-ruta', (req, res) => {
   res.send('Hola, soy una nueva ruta');
 });
+app.use('/api/v1/image/public', express.static(path.join(__dirname,'../public/img/uploads')))
 
 routerApi(app);
 
@@ -38,25 +40,6 @@ app.use(errorHandler);
 app.use(ormErrorHandler);
 
 
-// app.get('/users', (req, res) => {
-//   const { limit, offset } = req.query;
-//   if (limit && offset) {
-//     res.json({
-//       limit,
-//       offset
-//     });
-//   } else {
-//     res.send('No hay parametros');
-//   }
-// });
-
-// app.get('/categories/:categoryId/products/:productId', (req, res) => {
-//   const { categoryId, productId } = req.params;
-//   res.json({
-//     categoryId,
-//     productId,
-//   });
-// })
 
 app.listen(port, () => {
   console.log('Mi port' +  port);
