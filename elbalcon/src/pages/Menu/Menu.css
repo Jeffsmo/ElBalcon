@@ -1,0 +1,8 @@
+.items{
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: 100%;
+    max-width: 1024px;
+    z-index: 2;
+}

@@ -3,7 +3,7 @@
     cursor: pointer;
     width: 224px;
     height: 240px;
-    margin: 0;
+    margin:4px ;
     padding: 4px;
     border-radius: 4%;
 }
@@ -42,8 +42,15 @@ figure{
     justify-content: space-between;
 }
 .text-name{
+    position: relative;
+    text-align: left;
     font-size: small;
     font-weight: lighter;
+    justify-content: left;
+    width: 100%;
+    font-size: small;
+    font-family:'Dancing script',cursive;
+
 }
 .price{
     font-size: small;
@@ -54,4 +61,14 @@ figure{
     height: 100%;
     object-fit: cover;
     border-radius: 10%;
+}
+.price-container{
+    width: 40%;
+}
+.name-container{
+    width: 50%;
+    font-size: small;
+    font-family:'Dancing script',cursive;
+    overflow-y: hidden;
+    
 }

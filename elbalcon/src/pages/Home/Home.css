@@ -1,9 +1,60 @@
-.Home{
-   /* color: var(--secondary-color);
-    font-family: 'Dancing Script', cursive;
-    background-color: var(--main-white);
-    font-weight: bold;
-    font-size: x-large;*/
-    color: black;
-    z-index: 10;
+.main-container{
+    background-color: var( --soft-clear-brown);
+    opacity: 80%;
+    z-index: 1;
+    margin-top: 160px;
+    position: absolute;
+    padding-top: 250px;
+    padding-right: 40px;
+    width: 450px;
+    height: 180px;
+    padding-left: 50px;
+    padding-bottom: 60px;
+    border-top-right-radius: 80%;
+    border-top-left-radius: 80%;
+    gap: 40px;
 }
+
+.main {
+    margin-top: 240px;
+    color: var(--main-white);
+    font-size: 80px;
+    z-index: 2;
+    gap: 40px;
+    flex-direction: column;
+    background-color: var(--main-background); /* Cambié var(#b3a171) por var(--main-background) */
+  }
+  
+  .main-options {
+    background-color: var(--main-background); /* Cambié var(#b3a171) por var(--main-background) */
+    z-index: 2;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    gap: 40px;
+    list-style: none; /* Quité text-decoration y agregué list-style para quitar los puntos de lista */
+  }
+  
+  .option-container{
+    background-color: var(--main-white);
+    padding: 20px;
+  }
+
+  .option-container:hover{
+    background-color: var(--vintage-orange);
+    cursor:pointer;
+  }
+  .home-link{
+    color: var(--secondary-color);
+  }
+
+  .home-link:hover{
+    color:var(--main-white)
+  }
+
+  @media (max-width:1000px) {
+    .main{
+        margin-top: 160px;
+    }
+  }

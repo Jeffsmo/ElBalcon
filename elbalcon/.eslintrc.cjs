@@ -14,5 +14,6 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    'no-console': 'off', // Desactiva la regla que prohíbe console.log()
   },
-}
+};

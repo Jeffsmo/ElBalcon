@@ -1,21 +1,35 @@
+
+import { useContext } from 'react';
+import { MenuContext } from '../../context';
+
 import './Card.css';
 
 
-function Card(){
+
+function Card(data){
+    const context = useContext(MenuContext)
+
     return(
         <div className='card-container'>
             <figure>
                 <span className='category'>
-                    Entrantes
+                    {data.data.category.name}
                 </span>
-                <img className='image' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3DOe77qPCuy8UkeUNQKyomDJWuqwJBh8RsQ&usqp=CAU' alt="Salchipapa" />
-                <div className='Add'>
+                <img className='image' src={`http://localhost:3000/api/v1/image/public/${data.data.images.fileName}`} alt={data.data.images.name} />
+                <div className='Add' 
+                    onClick={()=> context.setCount(context.count + 1)}>
                     +
                 </div>
-                <p className='name-price '>
-                    <span className='text-name'> Salchipapa</span>
-                    <span className='price'>9500 $</span>
-                </p>
+                <span className='name-price '>
+                    
+                        <span className='text-name'> {data.data.name}</span>
+                    
+                    
+                    <div className='price-container'>
+                    <span className='price'>${` ${data.data.price}`}</span>
+                    </div>
+                    
+                </span>
             </figure>
         </div>
     )
