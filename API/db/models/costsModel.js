@@ -13,6 +13,11 @@ const CostsSchema = {
       allowNull:false,
       type: DataTypes.STRING,
   },
+  description:{
+    allowNull: true,
+    type: DataTypes.TEXT,
+    field: 'description'
+  },
   value:{
       allowNull:false,
       type: DataTypes.INTEGER,
@@ -22,7 +27,23 @@ const CostsSchema = {
       type: DataTypes.DATE,
       field: 'create_at',
       defaultValue: Sequelize.NOW,
-  }
+  },
+  day:{
+    allowNull:false,
+    type: DataTypes.INTEGER,
+    field: 'Day'
+  },
+  month:{
+    allowNull:false,
+    type:DataTypes.INTEGER,
+    field: 'Month',
+
+  },
+  year:{
+    allowNull:false,
+    type:DataTypes.INTEGER,
+    field: 'Year',
+  },
 }
 
 class Costs extends Model {

@@ -4,9 +4,9 @@ const Joi = require('joi');
 const id = Joi.number().integer();
 const boardId = Joi.number().integer();
 const sale = Joi.string();
-const day = Joi.number().integer().min(1);
-const month = Joi.number().integer().min(1);
-const year = Joi.number().integer().min(2000);
+const day = Joi.number().integer().min(1).max(31);
+const month = Joi.number().integer().min(1).max(12);
+const year = Joi.number().integer().min(2000).max(3000);
 const menuId = Joi.number().integer();
 
 

@@ -2,7 +2,7 @@ const express = require('express');
 const routerApi = require('./routes/routerAPI');
 const cors = require('cors');
 const {logErrors,queryErrorHandler, errorHandler, boomErrorHandler, ormErrorHandler} = require('./httpErrors/errorHandler');
-const path = require('path');
+//const path = require('path');
 
 
 const app = express();
@@ -27,7 +27,7 @@ app.get('/api', (req, res) => {
 app.get('/api/nueva-ruta', (req, res) => {
   res.send('Hola, soy una nueva ruta');
 });
-app.use('/api/v1/image/public', express.static(path.join(__dirname,'../public/img/uploads')))
+
 
 routerApi(app);
 

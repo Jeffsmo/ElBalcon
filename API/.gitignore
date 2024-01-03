@@ -218,5 +218,7 @@ $RECYCLE.BIN/
 
 postgres_data
 mysql_data
+public/img/uploads/**
+!.gitkeep
 
 # End of https://www.toptal.com/developers/gitignore/api/node,windows,linux,macos
