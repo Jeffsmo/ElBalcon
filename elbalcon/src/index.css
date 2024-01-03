@@ -56,10 +56,38 @@ ul, ol {
   color: var(--form-color);
 }
 
-@media (max-width:1000px) {
+@media (max-width:1100px) {
   :root{
     background-size:auto;
     background-position-x:center;
     background-position-y: -300px;
   }
 }
+
+body {
+  overflow-y: hidden; /* Hide vertical scrollbar */
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
+/* Scrollbar styling */
+
+/* Works on Firefox */
+.scroll-black * {
+	scrollbar-width: thin;
+	scrollbar-color: rgb(70, 70, 70) auto;
+}
+
+/* Works on Chrome, Edge, and Safari */
+::-webkit-scrollbar {
+	width: 7px;
+}
+
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color:var(--main-white);
+}
+
+/* End scrollbar styling*/

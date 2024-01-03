@@ -1,3 +1,96 @@
 .title{
     color:var(--main-white)
 }
+.tab-columns{
+    display: grid;
+    background-color: var(--main-white);
+    width: 98%;
+    margin: 0;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    gap: 8px;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    align-items: center;
+    justify-content: center;
+    
+}
+.cost-container{
+    display: grid;
+    gap: 16px;
+    background-color: rgba(70, 55, 36, 0.8);
+    width: 60vw;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    max-height: 600px;
+}
+.description-title{
+    grid-column: span 2;
+}
+
+.main-tab-cel{
+    justify-content: center;
+    align-items: center;
+    margin: 4px;
+    padding: 0;
+}
+
+.cost-options{
+    display: flex;
+    color: var(--main-white);
+    justify-content: space-between;
+    gap: 48px;
+    margin: 32px;
+}
+.cost-options-1{
+    background-color: var(--soft-clear-brown);
+    color: var(--secondary-color);
+    cursor: pointer;
+    height: 100%;
+    padding: 20px;
+    border-radius: 16px;
+}
+
+.cost-options-1:hover{
+    background-color: var(--vintage-orange);
+    color: var(--main-white);
+}
+
+.cost-options-2{
+    background-color: var(--soft-clear-brown);
+    color: var(--secondary-color);
+    cursor: pointer;
+    height: 100%;
+    padding: 20px;
+    border-radius: 16px;
+}
+
+.cost-options-2:hover{
+    background-color: var(--vintage-orange);
+    color: var(--main-white);
+}
+
+.cost-options-3{
+    background-color: var(--soft-clear-brown);
+    color: var(--secondary-color);
+    cursor: pointer;
+    height: 100%;
+    padding: 20px;
+    border-radius: 16px;
+}
+
+.cost-options-3:hover{
+    background-color: var(--vintage-orange);
+    color: var(--main-white);
+}
+.tabs-content{
+    max-height: 480px;
+    overflow-y: scroll;
+}
+
+@media (max-width:1300px) {
+    .cost-container{
+        width: 90vw;
+    }
+  }

@@ -16,26 +16,23 @@
 .modal-card{
     background-color: var(--main-white);
     display: flex;
-    flex-direction: column;
     /*position: fixed;
     top: 0;
     left: 0;*/
-    width: 60vw;
-    height: 80vh;
+    width: 420px;
+    height: 200px;
     padding: 30px;
     border-radius: 8px;
-    margin: 40px;
     z-index: 11;
-    overflow-y: scroll;
+    overflow: none;
 }
 .modal-options{
     align-items: flex-start;
-    width: 98%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
-    height: 124px;
+    
     padding: 4px;
-    max-height: 64px;
 }
 
 .close-icon{

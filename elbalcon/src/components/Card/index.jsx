@@ -1,13 +1,13 @@
 
-import { useContext } from 'react';
+/*import { useContext } from 'react';
 import { MenuContext } from '../../context';
-
+*/
 import './Card.css';
 
 
 
 function Card(data){
-    const context = useContext(MenuContext)
+   // const context = useContext(MenuContext)
 
     return(
         <div className='card-container'>
@@ -17,8 +17,8 @@ function Card(data){
                 </span>
                 <img className='image' src={`http://localhost:3000/api/v1/image/public/${data.data.images.fileName}`} alt={data.data.images.name} />
                 <div className='Add' 
-                    onClick={()=> context.setCount(context.count + 1)}>
-                    +
+                    >
+                    {data.data.id}
                 </div>
                 <span className='name-price '>
                     

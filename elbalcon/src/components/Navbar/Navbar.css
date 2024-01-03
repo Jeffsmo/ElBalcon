@@ -44,3 +44,7 @@ a {
 .nav-font{
     color: var(--secondary-color);
 }
+
+.logo{
+    color: var(--secondary-color);
+}

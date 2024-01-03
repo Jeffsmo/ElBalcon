@@ -1,5 +1,5 @@
-import { useRoutes, BrowserRouter } from 'react-router-dom';
-import { MenuProvider} from '../../context';
+import { Routes, Route, BrowserRouter, useLocation } from 'react-router-dom';
+import {  CostsProvider, MenuProvider } from '../../context';
 import Home from "../Home"
 import Costs from '../Costs'
 import Balance from '../Balance';
@@ -7,31 +7,37 @@ import Profits from '../Profits';
 import Navbar from '../../components/Navbar';
 import Sales from '../Sales';
 import Menu from '../Menu';
+import { AnimatePresence } from 'framer-motion';
 import './App.css';
 
 const AppRoutes = () => {
-  let routes = useRoutes([
-    {  path: '/', element: <Home />},
-    { path: '/balance', element: <Balance/>},
-    { path:'/profits', element: <Profits/>},
-    { path: '/costs', element:<Costs/> },
-    { path:'./sales', element:<Sales/>},
-    { path: '/menu', element:<Menu/>}
+  const location = useLocation();
 
-  ]);
-
-  return routes;
-}
+  return (
+    <AnimatePresence mode='wait'>
+      <Routes location={location} key={location.pathname}>
+        <Route path='/' element={<Home />} />
+        <Route path='/balance' element={<Balance />} />
+        <Route path='/profits' element={<Profits />} />
+        <Route path='/costs' element={<Costs />} />
+        <Route path='/sales' element={<Sales />} />
+        <Route path='/menu' element={<Menu />} />
+      </Routes>
+    </AnimatePresence>
+  );
+};
 
 function App() {
   return (
-    <MenuProvider>
-      <BrowserRouter>
-          <AppRoutes />
-          <Navbar/>
-      </BrowserRouter>
-    </MenuProvider>
-
+    <MenuProvider>      
+        <CostsProvider>
+            <BrowserRouter>
+              <AppRoutes />
+              <Navbar />
+            </BrowserRouter>
+        </CostsProvider>
+      </MenuProvider>
+    
   );
 }
 

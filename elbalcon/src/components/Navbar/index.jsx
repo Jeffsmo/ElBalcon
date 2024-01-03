@@ -1,5 +1,7 @@
 import {NavLink} from 'react-router-dom';
+import Logo from './logo';
 import './Navbar.css'
+
 
 
 function Navbar(){
@@ -9,14 +11,14 @@ function Navbar(){
             <ul className='font-semibold navbar-container'>
                 <li>
                     <NavLink to='/' className='nav-font'>
-                        El Balcón
+                        <Logo className="logo"/>
                     </NavLink>
                 </li>
             </ul>
 
             <ul className='navbar-container'>
                 <li>
-                        Jeferson Marin
+                        <img src="" alt="" />
                 </li>
                 <li>
                     <NavLink to='/menu' className= 'font-semibold Menu nav-font'>

@@ -28,3 +28,8 @@ declare module 'elbalcon/src/pages/Menu/index.jsx'{
     const Menu: React.ComponentType;
     export default Menu;
 }
+
+declare module 'elbalcon/src/components/modal/Create/index.jsx'{
+    const ModalCreateCost : React.ComponentType;
+    export default ModalCreateCost;
+}
