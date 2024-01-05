@@ -131,6 +131,8 @@ label{
     background-color: rgba(10,32, 30, 0.2);
     width: 40vw;
     padding: 12px;
+    max-height: 350px;
+    overflow-y: scroll;
     
 }
 

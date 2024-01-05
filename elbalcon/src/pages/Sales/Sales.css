@@ -1,0 +1,116 @@
+.title{
+    color:var(--main-white)
+}
+.tab-columns-sale{
+    display: grid;
+    background-color: var(--main-white);
+    width: 98%;
+    margin: 0;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    gap: 8px;
+    grid-template-columns: repeat(20, minmax(0, 1fr));
+    align-items: center;
+    justify-content: center;
+    
+}
+.sale-container{
+    display: grid;
+    gap: 16px;
+    background-color: rgba(70, 55, 36, 0.8);
+    width: 90vw;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    max-height: 600px;
+}
+.description-title-sale{
+    grid-column: span 4;
+    justify-content: center;
+    align-items: center;
+    margin: 4px;
+    padding: 0;
+}
+.num-tab-cel-sale{
+    justify-content: center;
+    align-items: center;
+    margin: 4px;
+    padding: 0;
+    grid-column: span 1;  
+}
+
+.main-tab-cel-sale{
+    justify-content: center;
+    align-items: center;
+    margin: 4px;
+    padding: 0;
+    grid-column: span 2;
+}
+
+.img-tab-cel-sale{
+    justify-content: center;
+    align-items: center;
+    margin: 4px;
+    padding: 0;
+    grid-column: span 3;
+}
+
+.sale-options{
+    display: flex;
+    color: var(--main-white);
+    justify-content: space-between;
+    gap: 48px;
+    margin: 32px;
+}
+.sale-options-1{
+    background-color: var(--soft-clear-brown);
+    color: var(--secondary-color);
+    cursor: pointer;
+    height: 100%;
+    padding: 20px;
+    border-radius: 16px;
+}
+
+.sale-options-1:hover{
+    background-color: var(--vintage-orange);
+    color: var(--main-white);
+}
+
+.sale-options-2{
+    background-color: var(--soft-clear-brown);
+    color: var(--secondary-color);
+    cursor: pointer;
+    height: 100%;
+    padding: 20px;
+    border-radius: 16px;
+}
+
+.sale-options-2:hover{
+    background-color: var(--vintage-orange);
+    color: var(--main-white);
+}
+
+.sale-options-3{
+    background-color: var(--soft-clear-brown);
+    color: var(--secondary-color);
+    cursor: pointer;
+    height: 100%;
+    padding: 20px;
+    border-radius: 16px;
+}
+
+.sale-options-3:hover{
+    background-color: var(--vintage-orange);
+    color: var(--main-white);
+}
+.tabs-content-sale{
+    max-height: 480px;
+    overflow-y: scroll;
+}
+
+@media (max-width:1300px) {
+    .sale-container{
+        width: 90vw;
+    }
+  }

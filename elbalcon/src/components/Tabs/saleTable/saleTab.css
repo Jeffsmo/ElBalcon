@@ -1,0 +1,132 @@
+.sale-tab{
+    display: grid;
+    /*background-color: var(--main-white);*/
+    width: 99.5%;
+    margin: 0px;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    grid-template-columns: repeat(20, minmax(0, 1fr));
+}
+
+.sale-font{
+    color: var(--secondary-color);
+    font-family: Arial, Helvetica, sans-serif;
+    max-height: 64px;
+  
+}
+.sale-name{
+    justify-content: space-between;
+}
+.sale-value{
+    justify-content: space-between;
+}
+.sale-cel{
+    margin: 2px;
+    background-color: var(--main-white);
+    padding: 12px;    
+    border-radius: 4px;
+    border-width: 60px;
+    height: 64px;
+   overflow: auto;
+   grid-column: span 2;
+}
+
+.sale-description{
+    display: flex;
+    height: 60px;
+    justify-content: left;
+}
+
+.decription-cel-sale{
+    justify-content: left;
+    grid-column: span 4;
+    margin: 2px;
+    background-color: var(--main-white);
+    padding: 12px;
+    border-radius: 4px;
+    border-width: 60px;
+    height: 60px;
+    overflow-y: scroll;
+    text-align: left; /* Ajuste para alinear el texto a la izquierda */
+}
+
+
+.decription-cel::-webkit-scrollbar{
+    width: 7px;
+}
+
+.decription-cel::-webkit-scrollbar-track{
+    background: transparent;
+}
+
+
+.decription-cel::-webkit-scrollbar-thumb {
+	background-color:rgba(10,32, 30, 0.2);
+}
+
+
+.sale-tab-selected{
+    background-color: var(--soft-clear-brown);
+    border-radius: 4px;
+}
+
+.img-cel{
+    margin: 2px;
+    background-color: var(--main-white);
+    padding: 12px;    
+    border-radius: 4px;
+    border-width: 60px;
+    height: 64px;
+   overflow: auto;
+   grid-column: span 3;
+}
+
+.cel-num-sale{
+    cursor: pointer;
+    margin: 2px;
+    background-color: var(--main-white);
+    padding: 12px;    
+    border-radius: 4px;
+    border-width: 60px;
+    height: 64px;
+   overflow: auto;
+   grid-column: span 1;
+}
+
+.cel-num-selected-sale{
+    cursor: pointer;
+    background-color: var(--vintage-orange);
+    color: var(--main-white);
+
+}
+
+.cel-num-sale:hover{
+    background-color: var(--vintage-orange);
+    color: var(--main-white);
+}
+
+.image-sale{
+    height: 64px;
+    object-fit:scale-down;
+    border-radius: 10%;
+}
+
+
+.image-sale::-webkit-scrollbar{
+    width: 7px;
+}
+
+.image-sale::-webkit-scrollbar-track{
+    background: transparent;
+}
+
+
+.image-sale::-webkit-scrollbar-thumb {
+	background-color:rgba(10,32, 30, 0.2);
+}
+
+/*.tab-container{
+    background-color: rgba(70, 55, 36, 0.8);
+}*/

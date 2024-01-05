@@ -1,14 +1,14 @@
 //import ReactDOM from "react-dom";
 //import { XMarkIcon } from '@heroicons/react/24/solid';
 import "./styles.css";
-import { useContext } from 'react';
-import { CostsContext } from '../../../context';
+import { useContext, useState } from 'react';
+import { CostsContext, MenuContext, SalesContext } from '../../../context';
 import {useForm} from 'react-hook-form';
 
 
 function ModalCreateCost() {
     const { register, handleSubmit, formState : {errors} } = useForm();
-    const context = useContext(CostsContext);
+    const costContext = useContext(CostsContext);
     const onSubmit = handleSubmit((data) => {
         // Verificar si hay una fecha y realizar la división
         if (data.Fecha) {
@@ -25,13 +25,13 @@ function ModalCreateCost() {
         }
 
         
-        context.setFormData(data);
+        costContext.setFormData(data);
         
         
     });
 
     return (
-        <div className={`${context.isModalCreateOpen ? 'modal-create-container' : 'hidden'}`}>
+        <div className={`${costContext.isModalCreateOpen ? 'modal-create-container' : 'hidden'}`}>
             <div className='modal-create-card'>
                 <div className='modal-create-options'>
                     <h2>Registrar nuevo gasto</h2>
@@ -126,4 +126,165 @@ function ModalCreateCost() {
     );
 }
 
-export { ModalCreateCost };
+function ModalCreateSale() {
+
+    const { register, handleSubmit, formState : {errors} } = useForm();
+    const saleContext = useContext(SalesContext);
+    const menuContext = useContext(MenuContext);
+
+    // Estado para almacenar el precio seleccionado
+    const [selectedPrice, setSelectedPrice] = useState(0);
+
+    const handleSelectChange = (event) => {
+        // Obtener el precio de la opción seleccionada
+        const selectedOption = menuContext.items.find(item => item.id === parseInt(event.target.value));
+        setSelectedPrice(selectedOption ? selectedOption.price : 0);
+    };
+
+    const onSubmit = handleSubmit((data) => {
+        // Verificar si hay una fecha y realizar la división
+
+        console.log(data)
+        if (data.Fecha) {
+            const [year, month, day] = data.Fecha.split('-');
+            // Agregar las partes de la fecha al objeto data
+            data.year = ~~year;
+            data.month = ~~month;
+            data.day = ~~day;
+            delete data.Fecha
+        }
+        
+        if(data.precio){
+            data.boardId = ~~ data.boardId
+        }
+        if(data.menuId){
+            data.menuId = ~~ data.menuId
+        }
+        console.log(data)
+        
+        saleContext.setFormData(data);
+        
+        
+    });
+
+    return (
+        <div className={`${saleContext.isModalCreateOpen ? 'modal-create-container' : 'hidden'}`}>
+            <div className='modal-create-card'>
+                <div className='modal-create-options'>
+                    <h2>Registrar nueva venta</h2>
+                </div>
+                <div>
+                    <form className="create-cost-form" onSubmit={onSubmit}>
+                        {/* Ingresar Datos del Producto*/}
+
+                        <label htmlFor="boardId">
+                            Mesa
+                        </label>
+                        <input
+                            type="number"
+                            className="board-input"
+                            id=""
+                            {...register("boardId", {
+                                required:{
+                                    value:true,
+                                    message:"Número de mesa requerido"
+                                },
+                                min:{
+                                    value: 1,
+                                    message: "El número de mesa debe ser mayor a cero"
+                                },
+                                max:{
+                                    value:100,
+                                    message: "El número de mesa no debes ser mayor a 100"
+                                }
+
+                            })}
+                        />
+
+                            {
+                                errors.boardId?.message && <span className="error">{errors.boardId?.message}</span>
+                            }
+                        <label htmlFor="menuId" className='register-product-name'>
+                            Producto
+                        </label>
+
+                        <select name="menu" 
+                        className="select-menu-items" 
+                        {...register('menuId',
+                        {
+                            required:{
+                                value: true,
+                                message: "Debe Seleccionar un Producto"
+                            }
+                        })}
+                        
+                        onChange={handleSelectChange}
+                        >
+                            <option>{null}</option>
+                        {menuContext.items.map((item)=>
+                            <option
+                            className="select-menu-options" 
+                            value={item.id} 
+                            key={item.id}>{item.name}</option>
+                            )}
+                        </select>
+                        {
+                            errors.product?.message  && <span className="error">{errors.product?.message}</span>
+                        }
+
+                        <label htmlFor="sale" className='register-product-name'>
+                            Descripción
+                        </label>
+                        <textarea
+                            type="text"
+                            className="cost-input-description"
+                            {...register("sale")}
+                        />
+
+
+                        <label htmlFor="value">
+                            Precio
+                        </label>
+                        <input
+                            type="number"
+                            className="cost-input"
+                            id=""
+                            disabled
+                            value={selectedPrice}
+                        />
+                        {
+                            errors.value?.message && <span className="error">{errors.value?.message}</span>
+                        }
+
+                        <label htmlFor="Fecha">
+                            Fecha
+                        </label>
+                        <input
+                            type="date"
+                            className="cost-input"
+                            {...register("Fecha", {
+                                required: {
+                                    value:true,
+                                    message: "Fecha requerida"
+                                },
+                            })}
+                        />
+
+{
+                            errors.Fecha?.message && <span className="error">{errors.Fecha?.message}</span>
+                        }
+
+                        <div className="save-cost-container">
+                            <button className="save-cost" type="submit">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+
+
+
+export { ModalCreateCost, ModalCreateSale };

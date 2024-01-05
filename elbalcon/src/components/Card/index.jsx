@@ -8,7 +8,6 @@ import './Card.css';
 
 function Card(data){
    // const context = useContext(MenuContext)
-
     return(
         <div className='card-container'>
             <figure>

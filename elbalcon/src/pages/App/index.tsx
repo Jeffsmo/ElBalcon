@@ -1,5 +1,5 @@
 import { Routes, Route, BrowserRouter, useLocation } from 'react-router-dom';
-import {  CostsProvider, MenuProvider } from '../../context';
+import {  CostsProvider, MenuProvider, SalesProvider } from '../../context';
 import Home from "../Home"
 import Costs from '../Costs'
 import Balance from '../Balance';
@@ -29,13 +29,15 @@ const AppRoutes = () => {
 
 function App() {
   return (
-    <MenuProvider>      
-        <CostsProvider>
-            <BrowserRouter>
-              <AppRoutes />
-              <Navbar />
-            </BrowserRouter>
-        </CostsProvider>
+    <MenuProvider>
+        <SalesProvider>
+          <CostsProvider>
+                <BrowserRouter>
+                  <AppRoutes />
+                  <Navbar />
+                </BrowserRouter>
+            </CostsProvider>        
+        </SalesProvider>      
       </MenuProvider>
     
   );
