@@ -47,12 +47,12 @@ Antes de comenzar con el proyecto, asegúrate de tener instalado lo siguiente:
 
 ## Uso
 
-Para iniciar la aplicación en modo desarrollo ejecuta en la ruta `./API`:
-    ```bash
-    npm run dev
+- Para iniciar la aplicación en modo desarrollo ejecuta en la ruta `./API`:
+   ```bash
+   npm run dev
 
     
-Para ejecutar el entorno de desarrollo del cliente de la aplicación:
+- Para ejecutar el entorno de desarrollo del cliente de la aplicación:
    - Ingresa al directorio `./elbalcon`:
      ```bash
      npm run dev
