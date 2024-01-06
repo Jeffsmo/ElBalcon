@@ -27,9 +27,8 @@ Antes de comenzar con el proyecto, asegúrate de tener instalado lo siguiente:
 1. Clona este repositorio:
 
    ```bash
-   git clone https://github.com/tu-usuario/proyecto-mi-pagina-web.git
-   cd proyecto-mi-pagina-web
-
+   git clone https://github.com/Jeffsmo/ElBalcon.git
+   cd sistema-facturacion
 2. Instala dependencias:
     ```bash
     npm install
@@ -50,8 +49,6 @@ Antes de comenzar con el proyecto, asegúrate de tener instalado lo siguiente:
 - Para iniciar la aplicación en modo desarrollo ejecuta en la ruta `./API`:
    ```bash
    npm run dev
-
-    
 - Para ejecutar el entorno de desarrollo del cliente de la aplicación:
    - Ingresa al directorio `./elbalcon`:
      ```bash
