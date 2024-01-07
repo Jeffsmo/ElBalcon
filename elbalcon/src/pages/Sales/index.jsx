@@ -16,7 +16,14 @@ function Sales() {
             .map(sale => ({ key: sale.id, data: sale }));
     }
 
+    const pricesSum = () => {
+        // Utiliza reduce en lugar de map para sumar los valores
+        const sum = context.saleCounter.reduce((acc, item) => acc + item.menu.price, 0);
+        console.log(sum);
+        return sum; // Retorna el valor sumado
+      };
 
+      const totalSum = pricesSum();
     return (
         <motion.div
         initial={{opacity:0}}
@@ -98,8 +105,13 @@ function Sales() {
                         }
                     </div>
 
+                        
                 </div>
-
+                <div className='total-sale-container'>
+                        <div className='total-sale'>
+                            TOTAL: {totalSum}
+                        </div>
+                    </div>
 
                 <Modal> 
                     {context.isModalDeleteOpen && (

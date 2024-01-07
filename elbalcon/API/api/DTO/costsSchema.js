@@ -6,7 +6,8 @@ const value = Joi.number().integer().min(100);
 const day = Joi.number().integer().min(1).max(31);
 const month = Joi.number().integer().min(1).max(12);
 const year = Joi.number().integer().min(2023).max(3000);
-const description = Joi.string()
+const description = Joi.string();
+const recordCostId = Joi.number().integer();
 
 const createCostsSchema = Joi.object({
   product: product.required(),
@@ -15,6 +16,7 @@ const createCostsSchema = Joi.object({
   month: month.required(),
   year: year.required(),
   description: description,
+  recordCostId: recordCostId.required(),
 });
 
 const updateCostsSchema = Joi.object({

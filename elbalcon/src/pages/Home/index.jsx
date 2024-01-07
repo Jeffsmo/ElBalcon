@@ -18,20 +18,24 @@ function Home() {
 
                     <ul className='main-options'>
                         <li className='costs-option'>
-                            <div className='option-container'>
-                                <NavLink to='/costs' className='home-link'>
-                                Registrar Gastos
+                            
+                                <NavLink to='/balance' className='home-link'>
+                                    <div className='option-container'>
+                                        Registrar Gastos
+                                    </div>
                                 </NavLink>
-                            </div>
+                            
 
                         </li>
 
                         <li>
-                            <div className='option-container'>
-                                <NavLink to='/sales' className='home-link'>
-                                Registrar Ventas
+                            
+                                <NavLink to='/balance' className='home-link'>
+                                    <div className='option-container'>
+                                        Registrar Ventas
+                                    </div>
                                 </NavLink>
-                            </div>
+
 
                         </li>
                     </ul>

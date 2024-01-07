@@ -10,23 +10,35 @@
     justify-content: center;
     padding: 8px;
     gap: 8px;
-    grid-template-columns: repeat(8, minmax(0, 1fr));
+    grid-template-columns: repeat(15, minmax(0, 1fr));
     align-items: center;
     justify-content: center;
+    
     
 }
 .cost-container{
     display: grid;
     gap: 16px;
     background-color: rgba(70, 55, 36, 0.8);
-    width: 60vw;
+    width: 90vw;
     justify-content: center;
     align-items: center;
     padding: 24px;
     max-height: 600px;
 }
 .description-title{
-    grid-column: span 2;
+    grid-column: span 4;
+    justify-content: center;
+    align-items: center;
+    margin: 4px;
+    padding: 0;
+}
+.num-tab{
+    justify-content: center;
+    align-items: center;
+    margin: 4px;
+    padding: 0;
+    grid-column: span 1;  
 }
 
 .main-tab-cel{
@@ -34,6 +46,7 @@
     align-items: center;
     margin: 4px;
     padding: 0;
+    grid-column: span 2;
 }
 
 .cost-options{
@@ -85,8 +98,25 @@
     color: var(--main-white);
 }
 .tabs-content{
-    max-height: 480px;
+    max-height: 400px;
     overflow-y: scroll;
+}
+
+.total-cost-container{
+    margin: 12px;
+    display: flex;
+    justify-content: flex-start;
+    align-items:end;
+    text-align: left;
+    color: var(--soft-clear-brown);
+    width: 90vw;
+}
+
+.total-cost{
+    width: 240px;
+    background-color: black;
+    padding: 16px;
+    border-radius: 15px;
 }
 
 @media (max-width:1300px) {

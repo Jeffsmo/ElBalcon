@@ -7,6 +7,8 @@ const salesRouter = require('./salesRouter');
 const menuRouter = require('./menuRouter');
 const categoryRouter = require('./categoryRouter')
 const imageRouter = require('./imageRouter');
+const recordCostsRouter = require('./recordCostsRouter');
+
 
 function routerApi(app) {
   const router = express.Router();
@@ -16,7 +18,8 @@ function routerApi(app) {
     router.use('/menu', menuRouter);
     router.use('/sales', salesRouter);
     router.use('/category', categoryRouter)
-    router.use('/image', imageRouter)
+    router.use('/image', imageRouter);
+    router.use('/record-costs', recordCostsRouter);
 }
 
 module.exports = routerApi;

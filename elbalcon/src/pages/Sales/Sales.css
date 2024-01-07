@@ -105,8 +105,25 @@
     color: var(--main-white);
 }
 .tabs-content-sale{
-    max-height: 480px;
+    max-height: 400px;
     overflow-y: scroll;
+}
+
+.total-sale-container{
+    margin: 12px;
+    display: flex;
+    justify-content: flex-start;
+    align-items:end;
+    text-align: left;
+    color: var(--soft-clear-brown);
+    width: 90vw;
+}
+
+.total-sale{
+    width: 240px;
+    background-color: black;
+    padding: 16px;
+    border-radius: 15px;
 }
 
 @media (max-width:1300px) {

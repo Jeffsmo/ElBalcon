@@ -10,12 +10,20 @@ import { motion } from 'framer-motion';
 
 function Costs() {
     const context = useContext(CostsContext)
+   
+   const pricesSum = () => {
+        // Utiliza reduce en lugar de map para sumar los valores
+        const sum = context.costCounter.reduce((acc, item) => acc + item.value, 0);
+        console.log(sum);
+        return sum; // Retorna el valor sumado
+      };
     const selectedCosts = () => {
         return context.costCounter
             .filter(cost => cost.selectedCost)
             .map(cost => ({ key: cost.id, data: cost }));
     }
-
+    const totalSum = pricesSum();
+    console.log(context.costCounter)
     return (
         <motion.div
         initial={{opacity:0}}
@@ -42,7 +50,7 @@ function Costs() {
 
                 <div className='cost-container'>
                     <div className='tab-columns'>
-                    <ul className='main-tab-cel'>
+                    <ul className='num-tab'>
                             <li>
                                 #
                             </li>
@@ -52,7 +60,7 @@ function Costs() {
                                 Producto
                             </li>
                         </ul>
-                        <ul className='main-tab-cel description-title'>
+                        <ul className='description-title'>
                             <li>
                                 Descripción
                             </li>
@@ -85,9 +93,14 @@ function Costs() {
                             ))
                         }
                     </div>
-
                 </div>
 
+                    <div className='total-cost-container'>
+                        <div className='total-cost'>
+                            TOTAL: {totalSum}
+                        </div>
+                        
+                    </div>
 
                 <Modal> 
                     {context.isModalDeleteOpen && (

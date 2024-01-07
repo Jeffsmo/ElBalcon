@@ -7,7 +7,7 @@ import './costTab.css'
 useContext
 
 
-function CostTab(data){
+function HistorialCostTab(data){
     
    const context = useContext(CostsContext)
    const [isSelected, setSelected] = useState(false);
@@ -89,4 +89,4 @@ function CostTab(data){
     )
 }
 
-export default CostTab;
+export default HistorialCostTab;

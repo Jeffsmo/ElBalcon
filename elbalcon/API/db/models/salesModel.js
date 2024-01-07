@@ -1,6 +1,7 @@
 const {Model, DataTypes, Sequelize} = require('sequelize');
 
 const {MENU_TABLE} = require('./menuModel');
+const { RECORD_SALES_TABLE } = require('./recordSalesModel');
 
 const SALES_TABLE = 'sales';
 
@@ -56,7 +57,19 @@ const SalesSchema = {
     },
     onUpdate: 'CASCADE',
     onDelete: 'SET NULL',
-  }
+  },
+  recordSaleId:{
+    allowNull:false,
+    type:DataTypes.INTEGER,
+    field: 'record_sale_id',
+    references: {
+      model: RECORD_SALES_TABLE,
+      key: 'id', // <-- Corrected to lowercase 'id'
+    },
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL',
+  },
+
 }
 
 class Sales extends Model {

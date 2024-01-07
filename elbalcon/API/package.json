@@ -1,10 +1,11 @@
 {
-  "name": "proyecto-mi-pagina-web",
+  "name": "elbalcon-api",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon api/index.js",
+    "init-db": "docker-compose up -d postgres pgadmin",
     "start": "node api/index.js",
     "lint": "eslint",
     "migrations:generate": "sequelize-cli migration:generate --name",

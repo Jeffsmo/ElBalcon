@@ -17,7 +17,9 @@ class CostsService
   }
     async findOne(id)
     {
-      const cost = await models.Costs.findByPk(id);
+      const cost = await models.Costs.findByPk(id,{
+        include : ['RecordCost']
+      });
       if(!cost){
         throw boom.notFound('user not found')
       }

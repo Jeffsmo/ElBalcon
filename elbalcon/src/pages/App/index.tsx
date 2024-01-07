@@ -19,8 +19,8 @@ const AppRoutes = () => {
         <Route path='/' element={<Home />} />
         <Route path='/balance' element={<Balance />} />
         <Route path='/profits' element={<Profits />} />
-        <Route path='/costs' element={<Costs />} />
-        <Route path='/sales' element={<Sales />} />
+        <Route path='/balance/costs' element={<Costs />} />
+        <Route path='/balance/sales' element={<Sales />} />
         <Route path='/menu' element={<Menu />} />
       </Routes>
     </AnimatePresence>

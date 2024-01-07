@@ -1,9 +1,10 @@
 {
   "name": "elbalcon",
   "private": true,
-  "version": "0.0.0",
+  "author": "J.S.M.O",
+  "version": "1.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "cd API && npm run init-db && npm run dev & cd .. & vite",
     "build": "tsc && vite build && electron-builder",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
@@ -33,5 +34,11 @@
     "vite-plugin-electron": "^0.14.0",
     "vite-plugin-electron-renderer": "^0.14.5"
   },
-  "main": "dist-electron/main.js"
+  "main": "dist-electron/main.js",
+  "build":{
+    "appId": "com.jsmo.elbalcon",
+    "directory": {
+      "output":"build"
+    }
+  }
 }
