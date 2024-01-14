@@ -6,19 +6,19 @@ const totalPrice = Joi.number().integer()
 
 
 
-const createRecordCostsSchema = Joi.object({
+const createRecordSalesSchema = Joi.object({
   week: week.required(),
   totalPrice: totalPrice,
 })
 
-const updateRecordCostsSchema = Joi.object({
+const updateRecordSalesSchema = Joi.object({
   id: id,
   week: week,
   totalPrice: totalPrice,
 })
 
-const getRecordCostsSchema = Joi.object({
+const getRecordSalesSchema = Joi.object({
   id: id,
 })
 
-module.exports = { createRecordCostsSchema,  updateRecordCostsSchema,   getRecordCostsSchema}
+module.exports = {  createRecordSalesSchema,   updateRecordSalesSchema,  getRecordSalesSchema}

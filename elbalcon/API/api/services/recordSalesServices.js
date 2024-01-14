@@ -3,25 +3,23 @@ const boom=require('@hapi/boom');
 
 const {models}= require('../../libs/sequelize')
 
-class RecordCostsService {
+class RecordSalesService {
   constructor() {}
 
   async create(data) {
-    const newRecordCost = await models.RecordCosts.create(data);
+    const newRecordCost = await models.RecordSales.create(data);
     return newRecordCost;
   }
 
   async find() {
     // Corregir la línea siguiente para utilizar models.Categories en lugar de models.Menu
-    const rta = await models.RecordCosts.findAll({
-      include: ['RecordedCosts']
-    });
+    const rta = await models.RecordSales.findAll();
     return rta;
   }
 
   async findOne(id) {
-    const recordCosts = await models.RecordCosts.findByPk(id,{
-      include: ['RecordedCosts']
+    const recordCosts = await models.RecordSales.findByPk(id,{
+      include: ['RecordedSales']
     });
     if (!recordCosts) {
       throw boom.notFound('Item not found');
@@ -42,4 +40,4 @@ class RecordCostsService {
   }
 }
 
-module.exports = RecordCostsService;
+module.exports = RecordSalesService;

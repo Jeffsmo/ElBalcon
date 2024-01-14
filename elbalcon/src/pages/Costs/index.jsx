@@ -1,29 +1,89 @@
 import './Costs.css';
 import Layout from '../../components/Layout/index';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import CostTab  from '../../components/Tabs/costTable/index';
 import { ModalCreateCost } from '../../components/modal/Create/index';
 import { ModalDeleteCost} from '../../components/modal/Delete/index'
 import { Modal } from '../../components/modal';
 import { CostsContext} from '../../context';
 import { motion } from 'framer-motion';
+import {  RecordCostContext } from '../../context';
 
 function Costs() {
-    const context = useContext(CostsContext)
-   
+    const context = useContext(CostsContext);
+
+    
+    let useRecordContext= useContext(RecordCostContext);
+    
+    //Identificadores de Registro.....
+
+    let recordIdentifiers = useRecordContext.selectedRecord.map(record => record.id);
+
+
    const pricesSum = () => {
         // Utiliza reduce en lugar de map para sumar los valores
-        const sum = context.costCounter.reduce((acc, item) => acc + item.value, 0);
-        console.log(sum);
+        const sum = context.costCounter.filter(cost=>recordIdentifiers.includes(cost.recordCostId)).reduce((acc, item) => acc + item.value, 0);
+       
         return sum; // Retorna el valor sumado
       };
+
+
     const selectedCosts = () => {
         return context.costCounter
             .filter(cost => cost.selectedCost)
             .map(cost => ({ key: cost.id, data: cost }));
     }
+
+
     const totalSum = pricesSum();
-    console.log(context.costCounter)
+
+
+    const [requestResult, setRequestResult] = useState(null);
+
+    useEffect(() => {
+        if (requestResult !== null) {
+            // Aquí puedes manejar el resultado de la petición POST
+            console.log('Resultado de la petición:', requestResult);
+        }
+    }, [requestResult]);
+    
+    const handleGuardarClick = async () => {
+        try {
+            // Recorrer los elementos de recordIdentifiers y realizar una petición PATCH para cada uno
+            if (recordIdentifiers.length <= 1) {
+                for (const id of recordIdentifiers) {
+                    const response = await fetch(`http://localhost:3000/api/v1/record-costs/${id}`, {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            totalPrice: totalSum,
+                        }),
+                    });
+    
+                    // Validar si la petición fue exitosa antes de recargar la página
+                    if (response.ok) {
+                        const result = await response.json();
+                        setRequestResult(result);
+                    } else {
+                        console.error('Error al realizar la petición:', response.statusText);
+                    }
+                }
+    
+                // Recargar la página después de completar todas las solicitudes PATCH
+                window.location.reload();
+            } else {
+                alert('Para guardar solamente debe haber seleccionado un Registro');
+            }
+        } catch (error) {
+            console.error('Error al realizar la petición:', error);
+        }
+    };
+    
+
+
+
     return (
         <motion.div
         initial={{opacity:0}}
@@ -44,7 +104,7 @@ function Costs() {
                             context.openDeleteModal();
                         }}
                     >Eliminar Gasto</div>
-                    <div className='cost-options-3'>Modificar Gasto</div>
+                    
                 </div>
 
 
@@ -86,20 +146,24 @@ function Costs() {
                             </li>
                         </ul>
                     </div>
-                    <div className='tabs-content'>
-                    {
-                            context.costCounter?.map(cost => (
-                                <CostTab key={cost.id} data={cost}/>
-                            ))
-                        }
+                        <div className='tabs-content'>
+                            {context.costCounter?.filter(cost => recordIdentifiers.includes(cost.recordCostId)).map(cost => (
+                                <CostTab key={cost.id} data={cost} />
+                            ))}
+                        </div>
                     </div>
-                </div>
 
                     <div className='total-cost-container'>
                         <div className='total-cost'>
-                            TOTAL: {totalSum}
+                            TOTAL: $ {totalSum}
                         </div>
                         
+                    </div>
+
+                    <div>
+                        <div>
+                        <button className='save-cost' onClick={handleGuardarClick}>REGISTRAR TOTALES</button>
+                        </div>
                     </div>
 
                 <Modal> 

@@ -1,9 +1,29 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext,  useEffect, useState } from "react";
 
 
 const MenuContext = createContext();
+const CostsHistorialContext = createContext();
 const CostsContext = createContext();
 const SalesContext = createContext();
+const RecordCostContext = createContext();
+
+
+const RecordCostProvider = ({children})=>{
+    const [selectedRecord, setSelectedRecord] = useState([]);
+
+    useEffect(() => {
+        console.log("Selected Record actualizado:", selectedRecord);
+    }, [selectedRecord]);
+
+    return(
+        <RecordCostContext.Provider value={{selectedRecord, setSelectedRecord}}>
+            {children}
+        </RecordCostContext.Provider>
+    )
+}
+
+
+
 
 const MenuProvider = ({children}) =>{
     const [items, setItems] = useState(null);
@@ -125,6 +145,7 @@ const SalesProvider = ({children})=>{
                     throw new Error('Network was not ok');
                 }
                 alert('Gasto Registrado con exito');
+                window.location.href ='/balance-sale';
                 window.location.reload();
             })
             .catch((error)=>{
@@ -257,6 +278,7 @@ const CostsProvider = ({children})=>{
                 }
                 alert('Gasto Registrado con exito');
                 window.location.reload();
+                window.location.href= '/balance-cost';
             })
             .catch((error)=>{
                 console.error('Error posting costs', error);
@@ -297,4 +319,140 @@ const CostsProvider = ({children})=>{
     )
 }
 
-export {MenuContext, MenuProvider, CostsContext, CostsProvider, SalesContext, SalesProvider}
+
+
+
+const CostsHistorialProvider = ({children})=>{
+   
+
+    // Modal * Show Modal
+
+    // General Modal 
+    const [isModalOpen, setModalOpen] = useState(false);
+    const openModal= () =>setModalOpen(true);
+    const closeModal = () => setModalOpen(false);
+
+    //Create Cost Modal
+
+    const [isModalCreateOpen, setModalCreateOpen] = useState(false);
+    const openCreateModal= () =>setModalCreateOpen(true);
+    const closeCreateModal = () => setModalCreateOpen(false);
+
+    //Delete Cost Modal
+
+    const [isModalDeleteOpen, setModalDeleteOpen] = useState(false);
+    const openDeleteModal = () => setModalDeleteOpen(true);
+    const closeDeleteModal = () => setModalDeleteOpen(false);
+
+    //Fetching * Cost
+    const [costsHistorial, setCostsHistorial] = useState()
+
+
+   // IsCostSelected? * State
+
+   const [selectedHistorialCosts, setSelectedHistorialCosts] = useState([]);
+
+   const selectCost = (listnum) => {
+       setSelectedHistorialCosts(prevSelected => [...prevSelected, listnum]);
+   };
+   
+   const undoSelectCost = (listnum) => {
+       setSelectedHistorialCosts(prevSelected => prevSelected.filter(item => item !== listnum));
+   };
+    //Cost Cunter * State
+
+    const [costCounter, setCostCounter ] = useState([]);
+    useEffect(() => {
+        if (costsHistorial) {
+            const numCost = costsHistorial.map((cost, index) => {
+                const listnum = index + 1;
+                return {
+                    ...cost,
+                    listnum: listnum,
+                    selectedHistorialCost: selectedHistorialCosts.includes(listnum)
+                };
+            });
+            setCostCounter(numCost);
+        }
+    }, [costsHistorial, selectedHistorialCosts]);
+
+
+    //Fetching Cost Table
+
+    useEffect(()=>{
+        fetch('http://localhost:3000/api/v1/record-costs')
+        .then(response => {
+            if(!response.ok){
+                throw new Error('Network was not ok')
+            }
+            return response.json()
+        })
+        .then(data => setCostsHistorial(data) /*console.log(data)*/)
+        .catch(error =>{
+            console.error('Error fetching costs', error)
+        })
+    }, [])
+
+    //Posting Data * Cost
+    const [formData, setFormData] = useState(null);
+
+    useEffect(()=>{
+        if(formData){
+            fetch('http://localhost:3000/api/v1/record-costs',{
+                method: 'POST',
+                headers:{
+                    'Content-Type': 'application/json',
+                },
+                body:JSON.stringify(formData),
+            })
+            .then((response)=>{
+                if (!response.ok){
+                    throw new Error('Network was not ok');
+                }
+                alert('Gasto Registrado con exito');
+                
+                window.location.reload();
+            })
+            .catch((error)=>{
+                console.error('Error posting costs', error);
+            });
+        }
+    }, [formData])
+
+
+    //Deleting Data * Cost
+    
+
+
+
+
+    return(
+        <CostsHistorialContext.Provider value={{
+            costsHistorial,
+            setCostsHistorial,
+            isModalOpen,
+            openModal,
+            closeModal,
+            isModalCreateOpen,
+            openCreateModal,
+            closeCreateModal,
+            formData,
+            setFormData,
+            costCounter,
+            setCostCounter,
+            selectCost,
+            undoSelectCost,
+            isModalDeleteOpen,
+            openDeleteModal,
+            closeDeleteModal,
+
+        }}>
+            {children}
+        </CostsHistorialContext.Provider>
+    )
+}
+
+
+
+
+export {MenuContext, MenuProvider, CostsContext, CostsProvider, SalesContext, SalesProvider, CostsHistorialProvider, CostsHistorialContext, RecordCostProvider , RecordCostContext}

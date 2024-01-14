@@ -19,7 +19,7 @@ function Home() {
                     <ul className='main-options'>
                         <li className='costs-option'>
                             
-                                <NavLink to='/balance' className='home-link'>
+                                <NavLink to='/balance-cost' className='home-link'>
                                     <div className='option-container'>
                                         Registrar Gastos
                                     </div>
@@ -30,7 +30,7 @@ function Home() {
 
                         <li>
                             
-                                <NavLink to='/balance' className='home-link'>
+                                <NavLink to='/balance-sale' className='home-link'>
                                     <div className='option-container'>
                                         Registrar Ventas
                                     </div>

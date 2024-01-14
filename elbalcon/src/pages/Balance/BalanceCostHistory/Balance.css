@@ -1,0 +1,153 @@
+.historial-container-costs{
+    display: flex;
+    z-index: 1;
+    flex-direction: column;
+
+    width: 100%;
+    height: 180px;
+    padding-left: 50px;
+    padding-bottom: 60px;
+    gap: 40px;
+}
+
+.options-hist-cost{
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.historial-title-costs{
+
+    color: var(--main-white);
+    font-size: 64px;
+    z-index: 2;
+    gap: 40px;
+
+    flex-direction: column;
+    background-color: var(--main-background);
+  }
+
+  .historial-option-container{
+    background-color: var(--soft-clear-brown);
+    color: var(--secondary-color);
+    cursor: pointer;
+    height: 100%;
+    width: 120px;
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  .historial-option-container:hover{
+    background-color: var(--vintage-orange);
+    color: var(--main-white);
+  }
+  
+  .historial-options-cost {
+    width: 160px;
+    background-color: var(--main-background); 
+    z-index: 2;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding: 0;
+    gap: 40px;
+    list-style: none; 
+  }
+
+  .historial-cost-option{
+    display: flex;
+    flex-direction: row;
+    color: var(--main-white);
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    margin-left: 20px;
+  }
+  
+  .option-container{
+    background-color: var(--main-white);
+    padding: 20px;
+  }
+
+  .option-container:hover{
+    background-color: var(--vintage-orange);
+    cursor:pointer;
+  }
+  .home-link{
+    color: var(--secondary-color);
+  }
+
+  .home-link:hover{
+    color:var(--main-white)
+  }
+  .tab-historial-content {
+    display: flex;
+    flex-direction: row;
+    height: 420px;
+    overflow-x: auto; /* Use 'auto' to show the scrollbar only when needed */
+    gap: 20px; /* Adjust the gap between elements as needed */
+  }
+  @media (max-width:1000px) {
+    .main{
+        margin-top: 160px;
+    }
+  }
+
+  .tab-content-h{
+    display: flex;
+    background-color:rgba(44, 35, 23, 0.2);
+
+    position: fixed;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    max-height: 30vw;
+    overflow-y: scroll;
+    color: var(--main-white);
+  }
+
+  .tab-content-h::-webkit-scrollbar {
+    width: 7px;
+    border-radius: 20px;
+}
+
+.tab-content-h::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.tab-content-h::-webkit-scrollbar-thumb {
+    background-color: var(--main-white);
+    width: 7px;
+    border-radius: 20px;
+}
+
+  .tabs-record-cost{
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: 100%;
+    max-width: 1024px;
+    z-index: 2;
+    background-color: rgba(179, 161, 113, 0.5);
+    padding: 24px;
+    margin: 0;
+    color: black;
+    overflow-y: scroll;
+    height: 100%;
+  }
+
+
+  .historial-container-costs-opt{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+  }

@@ -1,10 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import Layout from '../../components/Layout/index';
+import Layout from '../../../components/Layout/index';
 import { motion } from 'framer-motion'
 import './Balance.css'
 
-function Home() {
+function BalanceSalesHistory() {
   return (
     <motion.div
         initial={{opacity:0}}
@@ -17,16 +17,6 @@ function Home() {
                 
                 <div className='historial-tab-container'>
                     <ul className='historial-options'>
-                            <li className='costs-option'>
-                                
-                                    <NavLink to='/balance/costs' className='home-link'>
-                                    <div className='option-container'>
-                                        Registrar Gastos
-                                    </div>
-                                    </NavLink>
-                                
-
-                            </li>
 
                             <li>
                                 
@@ -49,4 +39,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default BalanceSalesHistory;

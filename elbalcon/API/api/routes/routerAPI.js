@@ -8,6 +8,7 @@ const menuRouter = require('./menuRouter');
 const categoryRouter = require('./categoryRouter')
 const imageRouter = require('./imageRouter');
 const recordCostsRouter = require('./recordCostsRouter');
+const recordSalesRouter = require('./recordSalesRouter');
 
 
 function routerApi(app) {
@@ -20,6 +21,7 @@ function routerApi(app) {
     router.use('/category', categoryRouter)
     router.use('/image', imageRouter);
     router.use('/record-costs', recordCostsRouter);
+    router.use('/record-sales', recordSalesRouter)
 }
 
 module.exports = routerApi;

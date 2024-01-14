@@ -4,7 +4,7 @@
 .tab-columns{
     display: grid;
     background-color: var(--main-white);
-    width: 98%;
+    width: 80vw;
     margin: 0;
     align-items: center;
     justify-content: center;

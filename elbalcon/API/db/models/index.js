@@ -7,7 +7,8 @@ const {Sales, SalesSchema} = require('./salesModel');
 const {Menu, MenuSchema} = require('./menuModel');
 const {Category, CategorySchema} = require('./categoryModel');
 const {Image, ImageSchema} = require('./imageModel');
-const {RecordCosts, RecordCostsSchema} = require('./recordCostsModel')
+const {RecordCosts, RecordCostsSchema} = require('./recordCostsModel');
+const { RecordSales, RecordSalesSchema } = require('./recordSalesModel');
 
 
 function setupModels(sequelize){
@@ -17,7 +18,8 @@ function setupModels(sequelize){
     Menu.init(MenuSchema, Menu.config(sequelize));
     Category.init(CategorySchema, Category.config(sequelize));
     Image.init(ImageSchema, Image.config(sequelize));
-    RecordCosts.init(RecordCostsSchema, RecordCosts.config(sequelize))
+    RecordCosts.init(RecordCostsSchema, RecordCosts.config(sequelize));
+    RecordSales.init(RecordSalesSchema, RecordSales.config(sequelize));
 
 
     Image.associate(sequelize.models);
@@ -26,6 +28,7 @@ function setupModels(sequelize){
     Menu.associate(sequelize.models);
     Costs.associate(sequelize.models);
     RecordCosts.associate(sequelize.models);
+    RecordSales.associate(sequelize.models)
 
 }
 

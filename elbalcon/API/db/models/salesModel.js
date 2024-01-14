@@ -47,24 +47,24 @@ const SalesSchema = {
     type:DataTypes.INTEGER,
     field: 'Year',
   },
-  menuId:{
+  menuId: {
     field: 'menu_id',
-    allowNull:false,
+    allowNull: false,
     type: DataTypes.INTEGER,
     references: {
       model: MENU_TABLE,
-      key:'id'
+      key: 'id',
     },
     onUpdate: 'CASCADE',
     onDelete: 'SET NULL',
   },
-  recordSaleId:{
-    allowNull:false,
-    type:DataTypes.INTEGER,
+  recordSaleId: {
+    allowNull: false,
+    type: DataTypes.INTEGER,
     field: 'record_sale_id',
     references: {
       model: RECORD_SALES_TABLE,
-      key: 'id', // <-- Corrected to lowercase 'id'
+      key: 'id',
     },
     onUpdate: 'CASCADE',
     onDelete: 'SET NULL',
@@ -73,16 +73,21 @@ const SalesSchema = {
 }
 
 class Sales extends Model {
-  static associate(models){
-      this.belongsTo(models.Menu, {as: 'menu'});
+  static associate(models) {
+    this.belongsTo(models.Menu, { as: 'menu' });
+    this.belongsTo(models.RecordSales, {
+      as: 'RecordSales',
+      foreignKey: 'recordSaleId', // Use lowercase 'r'
+    });
   }
-  static config(sequelize){
-      return{
-          sequelize,
-          tableName: SALES_TABLE,
-          modelName: 'Sales',
-          timestamps: false
-      }
+
+  static config(sequelize) {
+    return {
+      sequelize,
+      tableName: SALES_TABLE,
+      modelName: 'Sales',
+      timestamps: false,
+    };
   }
 }
 

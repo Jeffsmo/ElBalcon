@@ -1,14 +1,19 @@
 //import ReactDOM from "react-dom";
 //import { XMarkIcon } from '@heroicons/react/24/solid';
 import "./styles.css";
-import { useContext, useState } from 'react';
-import { CostsContext, MenuContext, SalesContext } from '../../../context';
+import { useContext, useState} from 'react';
+import { CostsContext, CostsHistorialContext, MenuContext, SalesContext,  RecordCostContext } from '../../../context';
 import {useForm} from 'react-hook-form';
 
 
 function ModalCreateCost() {
     const { register, handleSubmit, formState : {errors} } = useForm();
+
+
     const costContext = useContext(CostsContext);
+    const recordContext = useContext(RecordCostContext);
+
+    
     const onSubmit = handleSubmit((data) => {
         // Verificar si hay una fecha y realizar la división
         if (data.Fecha) {
@@ -23,6 +28,8 @@ function ModalCreateCost() {
         if(data.precio){
             data.precio = ~~ data.precio
         }
+        
+        data.recordCostId = recordContext.selectedRecord[0].id
 
         
         costContext.setFormData(data);
@@ -73,7 +80,19 @@ function ModalCreateCost() {
                             className="cost-input-description"
                             {...register("description")}
                         />
+                        <label htmlFor="week">
+                            Semana
+                        </label>
+                        <input
+                            type="week"
+                            className="cost-input"
+                            disabled
+                            value={recordContext.selectedRecord[0]?.week}
+                        />
 
+                        {
+                            errors.week?.message && <span className="error">{errors.week?.message}</span>
+                        }
 
                         <label htmlFor="value">
                             Precio
@@ -144,7 +163,6 @@ function ModalCreateSale() {
     const onSubmit = handleSubmit((data) => {
         // Verificar si hay una fecha y realizar la división
 
-        console.log(data)
         if (data.Fecha) {
             const [year, month, day] = data.Fecha.split('-');
             // Agregar las partes de la fecha al objeto data
@@ -286,5 +304,78 @@ function ModalCreateSale() {
 
 
 
+function ModalCreateRecordCosts() {
 
-export { ModalCreateCost, ModalCreateSale };
+    const { register, handleSubmit, formState : {errors} } = useForm();
+    const costHistorialContext = useContext(CostsHistorialContext);
+
+    const onSubmit = handleSubmit((data) => {
+        // Verificar si hay una fecha y realizar la división
+
+        console.log(data)
+        if (data.Fecha) {
+            const [year, month, day] = data.Fecha.split('-');
+            // Agregar las partes de la fecha al objeto data
+            data.year = ~~year;
+            data.month = ~~month;
+            data.day = ~~day;
+            delete data.Fecha
+        }
+        
+        if(data.precio){
+            data.boardId = ~~ data.boardId
+        }
+        if(data.menuId){
+            data.menuId = ~~ data.menuId
+        }
+        console.log(data)
+        
+        costHistorialContext.setFormData(data);
+        
+        
+    });
+
+    return (
+        <div className={`${costHistorialContext.isModalCreateOpen ? 'modal-create-container' : 'hidden'}`}>
+            <div className='modal-create-card'>
+                <div className='modal-create-options'>
+                    <h2>Nuevo Registro de Gastos</h2>
+                </div>
+                <div>
+                    <form className="create-cost-form" onSubmit={onSubmit}>
+                        {/* Ingresar Datos del Producto*/}
+
+
+
+                        <label htmlFor="week" className='register-product-name'>
+                            Semana
+                        </label>
+                        <input
+                            type="week"
+                            className="cost-input"
+                            {...register("week",{
+                                required:{
+                                    value:true,
+                                    message:"Semana Requerida"
+                                }
+                            })}
+                        />
+                        {
+                            errors.week?.message && <span className="error">{errors.week?.message}</span>
+                        }
+
+
+                        <div className="save-cost-container">
+                            <button className="save-cost" type="submit">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+
+
+
+export { ModalCreateCost, ModalCreateSale, ModalCreateRecordCosts };

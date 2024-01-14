@@ -1,8 +1,9 @@
 import { Routes, Route, BrowserRouter, useLocation } from 'react-router-dom';
-import {  CostsProvider, MenuProvider, SalesProvider } from '../../context';
-import Home from "../Home"
-import Costs from '../Costs'
-import Balance from '../Balance';
+import {  CostsProvider, MenuProvider, SalesProvider, CostsHistorialProvider,  RecordCostProvider } from '../../context';
+import Home from "../Home";
+import Costs from '../Costs';
+import BalanceCostHistory from '../Balance/BalanceCostHistory';
+import BalanceSaleHistory from "../Balance/BalanceSaleHistory"
 import Profits from '../Profits';
 import Navbar from '../../components/Navbar';
 import Sales from '../Sales';
@@ -17,7 +18,8 @@ const AppRoutes = () => {
     <AnimatePresence mode='wait'>
       <Routes location={location} key={location.pathname}>
         <Route path='/' element={<Home />} />
-        <Route path='/balance' element={<Balance />} />
+        <Route path='/balance-cost' element={<BalanceCostHistory />} />
+        <Route path='/balance-sale' element={<BalanceSaleHistory />} />
         <Route path='/profits' element={<Profits />} />
         <Route path='/balance/costs' element={<Costs />} />
         <Route path='/balance/sales' element={<Sales />} />
@@ -29,17 +31,23 @@ const AppRoutes = () => {
 
 function App() {
   return (
-    <MenuProvider>
-        <SalesProvider>
-          <CostsProvider>
-                <BrowserRouter>
-                  <AppRoutes />
-                  <Navbar />
-                </BrowserRouter>
-            </CostsProvider>        
-        </SalesProvider>      
-      </MenuProvider>
-    
+    <RecordCostProvider>
+
+
+      <CostsHistorialProvider>
+        <MenuProvider>
+            <SalesProvider>
+              <CostsProvider>
+                    <BrowserRouter>
+                      <AppRoutes />
+                      <Navbar />
+                    </BrowserRouter>
+                </CostsProvider>        
+            </SalesProvider>      
+          </MenuProvider>
+      </CostsHistorialProvider>
+
+    </RecordCostProvider>
   );
 }
 

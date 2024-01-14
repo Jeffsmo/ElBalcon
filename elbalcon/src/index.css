@@ -74,7 +74,7 @@ body {
 /* Works on Firefox */
 .scroll-black * {
 	scrollbar-width: thin;
-	scrollbar-color: rgb(70, 70, 70) auto;
+	scrollbar-color:  var(--main-white);
 }
 
 /* Works on Chrome, Edge, and Safari */
@@ -86,8 +86,6 @@ body {
 	background: transparent;
 }
 
-::-webkit-scrollbar-thumb {
-	background-color:var(--main-white);
-}
+
 
 /* End scrollbar styling*/

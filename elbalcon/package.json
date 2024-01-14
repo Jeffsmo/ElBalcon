@@ -5,17 +5,21 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "cd API && npm run init-db && npm run dev & cd .. & vite",
+    "start-db": "cd API && npm run init-db ",
+    "start-api": "cd API && npm run start",
     "build": "tsc && vite build && electron-builder",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
     "@heroicons/react": "^2.1.1",
+    "electron-devtools-installer": "3.2.0",
     "framer-motion": "^10.16.16",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.49.2",
     "react-router-dom": "^6.21.0",
+    "tree-kill": "^1.2.2",
     "vite-tsconfig-paths": "^4.2.2"
   },
   "devDependencies": {
@@ -26,6 +30,7 @@
     "@vitejs/plugin-react": "^4.0.4",
     "electron": "^26.1.0",
     "electron-builder": "^24.6.4",
+    "electron-devtools-installer": "3.2.0",
     "eslint": "^8.48.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
@@ -35,10 +40,19 @@
     "vite-plugin-electron-renderer": "^0.14.5"
   },
   "main": "dist-electron/main.js",
-  "build":{
+  "build": {
     "appId": "com.jsmo.elbalcon",
-    "directory": {
-      "output":"build"
-    }
+    "directories": {
+      "output": "build"
+    },
+    "extraResources": [
+      {
+        "from": "./elbalcon/API",
+        "to": "API",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ]
   }
 }

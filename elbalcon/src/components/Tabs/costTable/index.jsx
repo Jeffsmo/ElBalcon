@@ -8,11 +8,14 @@ useContext
 
 
 function CostTab(data){
+
+
     
    const context = useContext(CostsContext)
    const [isSelected, setSelected] = useState(false);
    
    const handleToggleSelect = () =>{
+    console.log('boton')
     if (isSelected){
         context.undoSelectCost(data.data.listnum);
     }else{
@@ -52,7 +55,7 @@ function CostTab(data){
                 <ul className="cost-font cost-value cost-cel">
                     <li>
                         <span>
-                         {data.data.value}
+                        $ {data.data.value}
                         </span>
                     </li>
                 </ul>
