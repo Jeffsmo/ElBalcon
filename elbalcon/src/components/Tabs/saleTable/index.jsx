@@ -59,7 +59,7 @@ function SaleTab(data){
                 <ul className="sale-font sale-value sale-cel">
                     <li>
                         <span>
-                         {data.data.menu.price}
+                        $ {data.data.menu.price}
                         </span>
                     </li>
                 </ul>

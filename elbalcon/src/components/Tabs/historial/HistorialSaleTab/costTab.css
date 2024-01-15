@@ -1,0 +1,214 @@
+/* .cost-font-h */
+.cost-font-h {
+    color: var(--secondary-color);
+    font-family: Arial, Helvetica, sans-serif;
+    max-height: 64px;
+}
+
+/* .tab-historial-container */
+.tab-historial-container {
+    width: 224px;
+    height: 240px;
+    margin: 4px;
+    padding: 4px;
+    border-radius: 4%;
+    cursor: pointer;
+    background-color: var(--main-white);
+    overflow-y: scroll;
+}
+
+/* .cost-name-h, .cost-value-h */
+.cost-name-h,
+.cost-value-h {
+    justify-content: space-between;
+}
+
+/* .cost-cel-h, .cel-num-h */
+.cost-cel-h{
+    margin: 20px;
+    background-color: var(--main-white);
+    padding: 12px;
+    border-radius: 4px;
+    border-width: 60px;
+    height: 20px;  
+}
+.cel-num-h {
+    margin: 0;
+    padding: 14px;
+    position: absolute;
+    top:0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(10,32, 30, 0.2);
+    width: 12px;
+    height: 12px;
+    border-radius: 100%;
+}
+
+.cost-cel-list{
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--main-white);
+    padding: 18px;    
+    border-radius: 4px;
+    border-width: 60px;
+    margin-bottom: 12px;
+   grid-column: span 2;
+   outline: none;
+   list-style: none;
+   text-align: left;
+   text-decoration: none;
+}
+
+
+
+/* .decription-cel-h::-webkit-scrollbar */
+.decription-cel-h::-webkit-scrollbar {
+    width: 7px;
+}
+
+/* .decription-cel-h::-webkit-scrollbar-track */
+.decription-cel-h::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* .decription-cel-h::-webkit-scrollbar-thumb */
+.decription-cel-h::-webkit-scrollbar-thumb {
+    background-color: rgba(10, 32, 30, 0.2);
+}
+
+/* .tab-historial-selected-h */
+.tab-historial-selected-h {
+    position: relative;
+    background-color: white; /* Fondo blanco */
+    border-radius: 8px;
+    overflow: hidden; /* Asegura que el overflow no afecte a los pseudo-elementos */
+}
+
+.small-id{
+    font-size: small;
+    font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+    text-align: left;
+    justify-content: left;
+    align-items: flex-start;
+    top: 0;
+    left: 0;
+}
+
+.list-record-cont{
+    height: 60px;
+    padding: 0;
+    width: 100%;
+}
+
+.tab-historial-selected-h::before {
+    content: '';
+    position: absolute;
+    opacity: 0.2;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(10, 32, 30, 0.9); /* Color encima del blanco con opacidad */
+    border-radius: 4px;
+    z-index: 1; /* Asegura que esté sobre el fondo blanco */
+}
+/* .cel-num-selected-h */
+.cel-num-selected-h {
+    background-color: var(--vintage-orange);
+    color: var(--main-white);
+    z-index: 2;
+}
+
+/* .cel-num-h:hover */
+.cel-num-h:hover {
+    background-color: var(--vintage-orange);
+    color: var(--main-white);
+}
+
+/* .name-price */
+.name-price {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* .text-name */
+.text-name {
+    position: relative;
+    text-align: left;
+    font-size: small;
+    font-weight: lighter;
+    width: 100%;
+    font-family: 'Dancing script', cursive;
+}
+
+/* .price */
+.price {
+    font-size: small;
+    font-weight: bold;
+}
+
+/* .image */
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10%;
+}
+
+/* .price-container, .name-container */
+.price-container {
+    width: 40%;
+}
+
+.name-container {
+    width: 50%;
+    font-size: small;
+    font-family: 'Dancing script', cursive;
+    overflow-y: hidden;
+}
+
+
+.record-name {
+    margin-right: 8px; /* Ajusta según sea necesario */
+}
+
+.record-value {
+    font-weight: bold; /* Ajusta según sea necesario */
+}
+
+
+.tab-cont{
+    height: 200px;
+}
+
+.recorded-costs-container {
+    background-color: var(--main-white);
+    width: 95%;
+    max-height: 50px;
+    overflow-y: scroll;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+    color: var(--vintage-orange);
+
+    /* Estilos específicos para WebKit (Chrome, Safari) */
+    scrollbar-width: thin;  /* Para navegadores que soportan el estándar */
+    scrollbar-color: rgba(10, 32, 30, 0.2) transparent; /* Establece el color de la scrollbar */
+    direction: rtl; /* Invierte la dirección de la scrollbar en el eje horizontal */
+}
+
+/* Estilos específicos para WebKit (Chrome, Safari) */
+.recorded-costs-container::-webkit-scrollbar {
+    width: 7px;
+}
+
+.recorded-costs-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.recorded-costs-container::-webkit-scrollbar-thumb {
+    background-color: rgba(10, 32, 30, 0.2);
+}

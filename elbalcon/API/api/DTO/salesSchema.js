@@ -8,6 +8,7 @@ const day = Joi.number().integer().min(1).max(31);
 const month = Joi.number().integer().min(1).max(12);
 const year = Joi.number().integer().min(2000).max(3000);
 const menuId = Joi.number().integer();
+const recordSaleId = Joi.number().integer();
 
 
 const createSalesSchema = Joi.object({
@@ -17,7 +18,7 @@ const createSalesSchema = Joi.object({
   month: month.required(),
   year: year.required(),
   menuId: menuId.required(),
-
+  recordSaleId: recordSaleId.required(),
 
 });
 

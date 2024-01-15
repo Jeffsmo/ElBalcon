@@ -59,7 +59,7 @@ const SalesSchema = {
     onDelete: 'SET NULL',
   },
   recordSaleId: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.INTEGER,
     field: 'record_sale_id',
     references: {

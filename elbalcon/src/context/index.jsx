@@ -3,16 +3,18 @@ import { createContext,  useEffect, useState } from "react";
 
 const MenuContext = createContext();
 const CostsHistorialContext = createContext();
+const SalesHistorialContext = createContext();
 const CostsContext = createContext();
 const SalesContext = createContext();
 const RecordCostContext = createContext();
+const RecordSaleContext = createContext();
 
 
 const RecordCostProvider = ({children})=>{
     const [selectedRecord, setSelectedRecord] = useState([]);
 
     useEffect(() => {
-        console.log("Selected Record actualizado:", selectedRecord);
+
     }, [selectedRecord]);
 
     return(
@@ -22,6 +24,24 @@ const RecordCostProvider = ({children})=>{
     )
 }
 
+
+const RecordSaleProvider=({children}) =>{
+    const [selectedRecord, setSelectedRecord ]= useState([]);
+
+    useEffect(()=>{
+    }, [selectedRecord]);
+
+    return(
+        <RecordSaleContext.Provider
+        value={
+            {selectedRecord,
+            setSelectedRecord,}
+        }
+        >
+            {children}
+        </RecordSaleContext.Provider>
+    )
+}
 
 
 
@@ -145,8 +165,8 @@ const SalesProvider = ({children})=>{
                     throw new Error('Network was not ok');
                 }
                 alert('Gasto Registrado con exito');
-                window.location.href ='/balance-sale';
                 window.location.reload();
+                window.location.href ='/balance-sale';
             })
             .catch((error)=>{
                 console.error('Error posting costs', error);
@@ -453,6 +473,137 @@ const CostsHistorialProvider = ({children})=>{
 }
 
 
+const SalesHistorialProvider = ({children})=>{
+   
+
+    // Modal * Show Modal
+
+    // General Modal 
+    const [isModalOpen, setModalOpen] = useState(false);
+    const openModal= () =>setModalOpen(true);
+    const closeModal = () => setModalOpen(false);
+
+    //Create Cost Modal
+
+    const [isModalCreateOpen, setModalCreateOpen] = useState(false);
+    const openCreateModal= () =>setModalCreateOpen(true);
+    const closeCreateModal = () => setModalCreateOpen(false);
+
+    //Delete Cost Modal
+
+    const [isModalDeleteOpen, setModalDeleteOpen] = useState(false);
+    const openDeleteModal = () => setModalDeleteOpen(true);
+    const closeDeleteModal = () => setModalDeleteOpen(false);
+
+    //Fetching * Cost
+    const [salesHistorial, setSalesHistorial] = useState()
 
 
-export {MenuContext, MenuProvider, CostsContext, CostsProvider, SalesContext, SalesProvider, CostsHistorialProvider, CostsHistorialContext, RecordCostProvider , RecordCostContext}
+   // IsCostSelected? * State
+
+   const [selectedHistorialSales, setSelectedHistorialSales] = useState([]);
+
+   const selectSale = (listnum) => {
+       setSelectedHistorialSales(prevSelected => [...prevSelected, listnum]);
+   };
+   
+   const undoSelectSale = (listnum) => {
+       setSelectedHistorialSales(prevSelected => prevSelected.filter(item => item !== listnum));
+   };
+    //Cost Cunter * State
+
+    const [saleCounter, setSaleCounter ] = useState([]);
+    useEffect(() => {
+        if (salesHistorial) {
+            const numSale = salesHistorial.map((cost, index) => {
+                const listnum = index + 1;
+                return {
+                    ...cost,
+                    listnum: listnum,
+                    selectedHistorialSale: selectedHistorialSales.includes(listnum)
+                };
+            });
+            setSaleCounter(numSale);
+        }
+    }, [salesHistorial, selectedHistorialSales]);
+
+
+    //Fetching Cost Table
+
+    useEffect(()=>{
+        fetch('http://localhost:3000/api/v1/record-sales')
+        .then(response => {
+            if(!response.ok){
+                throw new Error('Network was not ok')
+            }
+            return response.json()
+        })
+        .then(data => setSalesHistorial(data) /*console.log(data)*/)
+        .catch(error =>{
+            console.error('Error fetching sales', error)
+        })
+    }, [])
+
+    //Posting Data * Cost
+    const [formData, setFormData] = useState(null);
+
+    useEffect(()=>{
+        if(formData){
+            fetch('http://localhost:3000/api/v1/record-sales',{
+                method: 'POST',
+                headers:{
+                    'Content-Type': 'application/json',
+                },
+                body:JSON.stringify(formData),
+            })
+            .then((response)=>{
+                if (!response.ok){
+                    throw new Error('Network was not ok');
+                }
+                alert('Gasto Registrado con exito');
+                
+                window.location.reload();
+            })
+            .catch((error)=>{
+                console.error('Error posting sales', error);
+            });
+        }
+    }, [formData])
+
+
+    //Deleting Data * Cost
+    
+
+
+
+
+    return(
+        <SalesHistorialContext.Provider value={{
+            salesHistorial,
+            setSalesHistorial,
+            isModalOpen,
+            openModal,
+            closeModal,
+            isModalCreateOpen,
+            openCreateModal,
+            closeCreateModal,
+            formData,
+            setFormData,
+            saleCounter,
+            setSaleCounter,
+            selectSale,
+            undoSelectSale,
+            isModalDeleteOpen,
+            openDeleteModal,
+            closeDeleteModal,
+
+        }}>
+            {children}
+        </SalesHistorialContext.Provider>
+    )
+}
+
+
+
+
+export {MenuContext, MenuProvider, CostsContext, CostsProvider, SalesContext, SalesProvider, CostsHistorialProvider, CostsHistorialContext, RecordCostProvider , RecordCostContext, RecordSaleContext, RecordSaleProvider,  SalesHistorialContext, SalesHistorialProvider}

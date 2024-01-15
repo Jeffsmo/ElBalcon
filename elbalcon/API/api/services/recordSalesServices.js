@@ -13,7 +13,9 @@ class RecordSalesService {
 
   async find() {
     // Corregir la línea siguiente para utilizar models.Categories en lugar de models.Menu
-    const rta = await models.RecordSales.findAll();
+    const rta = await models.RecordSales.findAll({
+      include: [{ model: models.Sales, as: 'RecordedSales', include: ['menu'] }]
+    });
     return rta;
   }
 

@@ -1,5 +1,5 @@
 import { Routes, Route, BrowserRouter, useLocation } from 'react-router-dom';
-import {  CostsProvider, MenuProvider, SalesProvider, CostsHistorialProvider,  RecordCostProvider } from '../../context';
+import {  CostsProvider, MenuProvider, SalesProvider, CostsHistorialProvider,  RecordCostProvider, RecordSaleProvider, SalesHistorialProvider } from '../../context';
 import Home from "../Home";
 import Costs from '../Costs';
 import BalanceCostHistory from '../Balance/BalanceCostHistory';
@@ -32,8 +32,8 @@ const AppRoutes = () => {
 function App() {
   return (
     <RecordCostProvider>
-
-
+      <RecordSaleProvider>
+      <SalesHistorialProvider>
       <CostsHistorialProvider>
         <MenuProvider>
             <SalesProvider>
@@ -46,7 +46,8 @@ function App() {
             </SalesProvider>      
           </MenuProvider>
       </CostsHistorialProvider>
-
+      </SalesHistorialProvider>
+      </RecordSaleProvider>
     </RecordCostProvider>
   );
 }
