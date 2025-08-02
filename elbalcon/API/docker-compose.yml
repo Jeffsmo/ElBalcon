@@ -4,9 +4,9 @@ services:
   postgres:
     image: postgres:13
     environment:
-      - POSTGRES_DB=db_elbalcon
-      - POSTGRES_USER=elbalcon
-      - POSTGRES_PASSWORD=limonagrio123
+      - POSTGRES_DB=root
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=12345
     ports:
       - 5430:5432
     volumes:
@@ -15,8 +15,8 @@ services:
   pgadmin:
     image: dpage/pgadmin4
     environment:
-      - PGADMIN_DEFAULT_EMAIL=stiv.marin@utp.edu.co
-      - PGADMIN_DEFAULT_PASSWORD=limonagrio123
+      - PGADMIN_DEFAULT_EMAIL=alguien@example.com
+      - PGADMIN_DEFAULT_PASSWORD=12345
     ports:
       - 5050:80
 
@@ -25,7 +25,7 @@ services:
     environment:
       - MYSQL_DATABASE=db_elbalcon
       - MYSQL_USER=root
-      - MYSQL_ROOT_PASSWORD=limonagrio123
+      - MYSQL_ROOT_PASSWORD=12345
       - MYSQL_ROOT_PORT=3306
     ports:
       - 3306:3306
@@ -35,7 +35,7 @@ services:
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     environment:
-      - MYSQL_ROOT_PASSWORD=limonagrio123
+      - MYSQL_ROOT_PASSWORD=12345
       - PMA_HOST=mysql
     ports:
       - 8080:80
